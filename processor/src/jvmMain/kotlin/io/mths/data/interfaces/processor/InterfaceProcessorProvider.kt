@@ -6,5 +6,5 @@ import com.google.devtools.ksp.processing.SymbolProcessorProvider
 
 class InterfaceProcessorProvider : SymbolProcessorProvider {
 	override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor =
-		InterfaceProcessor()
+		InterfaceProcessor(logger = environment.logger)
 }

@@ -4,9 +4,10 @@ import com.tschuchort.compiletesting.KotlinCompilation.ExitCode.OK
 import com.tschuchort.compiletesting.SourceFile
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 
 class InterfaceProcessorTests : StringSpec({
-	"Compilation should succeed" {
+	"Finds annotated interface" {
 		val sourceCode = SourceFile.kotlin("Project.kt", """
 			package com.example.dtos
 			import io.mths.data.interfaces.data
@@ -16,6 +17,9 @@ class InterfaceProcessorTests : StringSpec({
 			}
 		""".trimIndent())
 
-		compileAndCheck(sourceCode) { exitCode shouldBe OK }
+		compileAndCheck(sourceCode) {
+			exitCode shouldBe OK
+			messages shouldContain "Processing com.example.dtos.Project"
+		}
 	}
 })
