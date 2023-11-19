@@ -1,6 +1,4 @@
-plugins {
-    kotlin("multiplatform")
-}
+plugins { kotlin("multiplatform") }
 
 kotlin {
     jvm()
