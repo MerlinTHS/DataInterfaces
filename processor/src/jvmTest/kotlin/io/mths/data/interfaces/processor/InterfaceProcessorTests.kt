@@ -16,8 +16,6 @@ class InterfaceProcessorTests : StringSpec({
 			}
 		""".trimIndent())
 
-		compileAndCheck(sourceCode) {
-			exitCode shouldBe OK
-		}
+		compileAndCheck(sourceCode) { exitCode shouldBe OK }
 	}
 })
