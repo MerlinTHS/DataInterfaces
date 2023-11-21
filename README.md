@@ -54,28 +54,30 @@ val book = object : Product {
 }
 ```
 
-Data Interfaces bridge the gap between the flexibility at definition time 
+Data Interfaces bridge the gap between the flexibility at definition time
 and the ease of use of data classes.
 
 ```kotlin
-@data interface Product : ProductData {
+@data private interface Product : ProductData {
     val id: Long
 }
 
-@data interface ProductData {
+@data private interface ProductData {
     val name: String
     val price: Long
 }
 ```
 
+Make sure you make all your data interfaces private, so that you don't mix them with the generated data classes.
+
 ## How it works
 
-First of all you need to annotate an interface with `@data`. 
+First of all you need to annotate an interface with `@data`.
 
 ```kotlin
 package com.example.dtos
 
-@data interface Example {
+@data private interface Example {
     val number: Int
 }
 ```
@@ -89,3 +91,17 @@ data class Example(
     val number: Int
 )
 ```
+
+## Roadmap
+
+### 1.0.1
+
+Introduce a second generation mode (companion).
+In this mode, the processor generates extension functions (operator invoke)
+on the companion object of the interface to mimic a data class constructor.
+
+The companion object must be added manually since KSP cannot modify existing sourcecode.
+
+### 1.0.2
+
+Use a Compiler Plugin (Companionate) to generate companion objects based on a meta-annotation.
