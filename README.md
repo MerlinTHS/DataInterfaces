@@ -1,5 +1,30 @@
 <h1 align="center">Data Interfaces</h1>
 
+## Getting Started
+
+Apply the KSP Compiler Plugin to your project.
+Add the annotation and processor dependencies.
+The following build script assumes a JVM target.
+
+```kotlin
+plugins {
+    // ...
+	id("com.google.devtools.ksp") version "1.9.20-1.0.14"
+}
+
+kotlin {
+    // ...
+
+	sourceSets.jvmMain.dependencies {
+		implementation(project(":annotations"))
+	}
+}
+
+dependencies {
+	add("kspJvm", project(":processor"))
+}
+```
+
 ## DTO Composition
 
 A common use case for data interfaces is the composition of DTOs for a REST service.
@@ -91,6 +116,10 @@ data class Example(
     val number: Int
 )
 ```
+
+## TODO
+
+- Publish to Maven Central
 
 ## Roadmap
 
