@@ -1,6 +1,7 @@
 rootProject.name = "DataInterfaces"
 include(":annotations")
 include(":processor")
+include(":demo")
 
 pluginManagement {
     repositories {
